@@ -1,0 +1,104 @@
+.vimeo-wrapper {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: -1;
+   pointer-events: none;
+   overflow: hidden;
+}
+.vimeo-wrapper iframe {
+   width: 100vw;
+   height: 163.3vw;
+   min-height: 100vh;
+   min-width: 133.3vh;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.type{
+				position: fixed; 
+				width: 550px;
+				left: 50%;
+				top: 50%;
+				margin-left: -275px;
+				text-align: center;
+				color: white;
+				font-family: 'Bowlby One SC', 'Helvetica', sans-serif;
+				font-size: 140px;
+				line-height: 70px;
+				z-index: 1000000000000;
+        -webkit-animation: color-change 1s infinite;
+    -moz-animation: color-change 1s infinite;
+    -o-animation: color-change 1s infinite;
+    -ms-animation: color-change 1s infinite;
+    animation: color-change 1s infinite;
+			}
+
+.overlay {
+    position:fixed;
+    top:450px;
+    left:450px;
+    z-index:1;
+}
+
+@-webkit-keyframes color-change {
+    0% { color: red; }
+    25% { color: green; }
+    50% { color: blue; }
+    65% { color: purple; }
+    75% { color: orange; }
+    100% { color: yellow; }
+}
+@-moz-keyframes color-change {
+    0% { color: red; }
+    25% { color: green; }
+    50% { color: blue; }
+    65% { color: purple; }
+    75% { color: orange; }
+    100% { color: yellow; }
+}
+@-ms-keyframes color-change {
+    0% { color: red; }
+    25% { color: green; }
+    50% { color: blue; }
+    65% { color: purple; }
+    75% { color: orange; }
+    100% { color: yellow; }
+}
+@-o-keyframes color-change {
+    0% { color: red; }
+    25% { color: green; }
+    50% { color: blue; }
+    65% { color: purple; }
+    75% { color: orange; }
+    100% { color: yellow; }
+}
+@keyframes color-change {
+    0% { color: red; }
+    25% { color: green; }
+    50% { color: blue; }
+    65% { color: purple; }
+    75% { color: orange; }
+    100% { color: yellow; }
+}
+.btn {
+                border: none;
+                background-color: inherit;
+                padding: 14px 28px;
+                font-size: 16px;
+                cursor: pointer;
+                display: inline-block;
+            }
+            
+            .oynat {
+                color: red;
+            }
+
+            .oynat:hover {
+                background: #f44336;
+                color: white;
+            }

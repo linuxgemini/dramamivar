@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Drama var mı?</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="content-language" content="TR">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="ekmektir.css">
+        <script>
+            window.onload = function() {
+                var vid = document.getElementById("halaytime");
+                vid.volume = 0.50;
+                vid.loop = true;
+                
+                var promise = vid.play();
+                if (promise !== undefined) {
+                    promise.then(_ => {
+                        console.log("AutoPlay started!");
+                    }).catch(error => {
+                        if (!vid.paused) return console.log("AutoPlay is prevented but something triggered the audio to play. /shrug");
+                        console.log("AutoPlay is prevented, showing the goddamn button.");
+                        document.getElementById("oynatmayaZorlayanButon").style.display = "";
+                    });
+                }
+            }
+            
+            function oynatUlan() {
+                document.getElementById("halaytime").play();
+                document.getElementById("oynatmayaZorlayanButon").style.display = "none";
+            }
+        </script>
+    </head>
+    <body>
+        <div class="videodiv">
+            <video id="halaytime" autoplay>
+                <source src="./Resources/halaytime.mp4" type="video/mp4">
+                <p class="type">Tarayıcın video oynatmayı desteklemiyor.</p>
+            </video>
+            <div class="type">Evet</div>
+            <button class="btn oynat" style="display: none;" id="oynatmayaZorlayanButon" onclick="oynatUlan();">Müziği Başlat</button>
+        </div>
+
+        <!-- HABERIM OLMADAN DRAMAYA MI GIRILDI. @batubozkan'a Twitter veya Instagram'a ulaş dramalayalım -->
+        <!-- rewritten by @linuxgemini on Twitter -->
+    </body>
+</html>
+
