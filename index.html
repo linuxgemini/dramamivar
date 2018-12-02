@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Drama var mı?</title>
+        <title>Drama mı var?</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta http-equiv="content-language" content="TR">
@@ -10,27 +10,28 @@
         <link rel="stylesheet" href="ekmektir.css">
         <script>
             window.onload = function() {
-                var vid = document.getElementById("halaytime");
-                vid.volume = 0.50;
-                vid.loop = true;
-                
-                var promise = vid.play();
-                if (promise !== undefined) {
-                    promise.then(_ => {
-                        console.log("AutoPlay started!");
-                    }).catch(error => {
-                        if (!vid.paused) return console.log("AutoPlay is prevented but something triggered the audio to play. /shrug");
-                        console.log("AutoPlay is prevented, showing the goddamn button.");
-                        document.getElementById("oynatmayaZorlayanButon").style.display = "";
-                    });
+                    var vid = document.getElementById("halaytime");
+                    vid.volume = 0.50;
+                    vid.loop = true;
+                    
+                    var promise = vid.play();
+                    if (promise !== undefined) {
+                        console.log("[linuxgemini] Checking if autoplay is running...");
+                        promise.then(_ => {
+                            console.log("AutoPlay started!");
+                        }).catch(error => {
+                            if (!vid.paused) return console.log("AutoPlay is prevented but something triggered the video to play. /shrug");
+                            console.log("AutoPlay is prevented, showing the goddamn button.");
+                            document.getElementById("oynatmayaZorlayanButon").style.display = "";
+                        });
+                    }
                 }
-            }
-            
-            function oynatUlan() {
-                document.getElementById("halaytime").play();
-                document.getElementById("oynatmayaZorlayanButon").style.display = "none";
-            }
-        </script>
+                
+                function oynatUlan() {
+                    document.getElementById("halaytime").play();
+                    document.getElementById("oynatmayaZorlayanButon").style.display = "none";
+                }
+            </script>
     </head>
     <body>
         <div class="videodiv">
@@ -43,7 +44,6 @@
         </div>
 
         <!-- HABERIM OLMADAN DRAMAYA MI GIRILDI. @batubozkan'a Twitter veya Instagram'a ulaş dramalayalım -->
-        <!-- rewritten by @linuxgemini on Twitter -->
+
     </body>
 </html>
-
