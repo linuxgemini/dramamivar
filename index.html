@@ -10,25 +10,68 @@
         <link rel="stylesheet" href="ekmektir.css">
         <script>
             window.onload = function() {
+					console.log("[@linuxgemini] window.onload triggered, video runtime start");
+
                     var vid = document.getElementById("halaytime");
                     vid.volume = 0.50;
                     vid.loop = true;
-                    
+					vid.muted = true;
+
+					document.videoStarted = false;
+					document.videoStartedAsMuted = false;
+					document.videoGotUnmuted = false;
+
+					function unmute() {
+						var lol = document.getElementById("halaytime");
+						lol.muted = false;
+						if (!document.videoStarted) {
+							vid.play();
+							document.videoStarted = true;
+							document.videoStartedAsMuted = vid.muted;
+						}
+						document.videoGotUnmuted = !vid.muted;
+						document.getElementById("oynatmayaZorlayanButon").style.display = "none";
+					}
+
+					window.onmousedown = unmute;
+					window.ontouchstart = unmute;
+
                     var promise = vid.play();
                     if (promise !== undefined) {
-                        console.log("[linuxgemini] Checking if autoplay is running...");
+                        console.log("Checking if autoplay is running...");
                         promise.then(_ => {
                             console.log("AutoPlay started!");
+
+							document.videoStarted = true;
+							document.videoStartedAsMuted = vid.muted;
+							document.videoGotUnmuted = !vid.muted;
+
+							if (document.videoStartedAsMuted) document.getElementById("oynatmayaZorlayanButon").style.display = "";
                         }).catch(error => {
-                            if (!vid.paused) return console.log("AutoPlay is prevented but something triggered the video to play. /shrug");
+                            if (!vid.paused) {
+								document.videoStarted = true;
+								document.videoStartedAsMuted = vid.muted;
+								document.videoGotUnmuted = !vid.muted;
+
+								return console.log("AutoPlay is prevented but something triggered the video to play. /shrug");
+							}
                             console.log("AutoPlay is prevented, showing the goddamn button.");
                             document.getElementById("oynatmayaZorlayanButon").style.display = "";
                         });
                     }
-                }
-                
+                };
+
                 function oynatUlan() {
-                    document.getElementById("halaytime").play();
+					var vid = document.getElementById("halaytime");
+                    vid.volume = 0.50;
+                    vid.loop = true;
+					vid.muted = false;
+                    if (!document.videoStarted) {
+						vid.play();
+						document.videoStarted = true;
+						document.videoStartedAsMuted = vid.muted;
+					}
+					document.videoGotUnmuted = !vid.muted;
                     document.getElementById("oynatmayaZorlayanButon").style.display = "none";
                 }
             </script>
@@ -40,7 +83,7 @@
                 <p class="type">Tarayıcın video oynatmayı desteklemiyor.</p>
             </video>
             <div class="type">Evet</div>
-            <button class="btn oynat" style="display: none;" id="oynatmayaZorlayanButon" onclick="oynatUlan();">Halayı Başlat</button>
+            <button class="btn oynat" style="display: none;" id="oynatmayaZorlayanButon" onclick="oynatUlan();">Halaya eşlik et</button>
         </div>
 
         <!-- HABERIM OLMADAN DRAMAYA MI GIRILDI. @batubozkan'a Twitter veya Instagram'a ulaş dramalayalım -->
