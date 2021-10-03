@@ -10,31 +10,32 @@
         <link rel="stylesheet" href="ekmektir.css">
         <script>
             window.onload = function() {
-					console.log("[@linuxgemini] window.onload triggered, video runtime start");
+                    console.log("[@linuxgemini] window.onload triggered, video runtime start");
 
                     var vid = document.getElementById("halaytime");
                     vid.volume = 0.50;
                     vid.loop = true;
-					vid.muted = true;
+                    vid.muted = true;
 
-					document.videoStarted = false;
-					document.videoStartedAsMuted = false;
-					document.videoGotUnmuted = false;
+                    document.videoStarted = false;
+                    document.videoStartedAsMuted = false;
+                    document.videoGotUnmuted = false;
 
-					function unmute() {
-						var lol = document.getElementById("halaytime");
-						lol.muted = false;
-						if (!document.videoStarted) {
-							vid.play();
-							document.videoStarted = true;
-							document.videoStartedAsMuted = vid.muted;
-						}
-						document.videoGotUnmuted = !vid.muted;
-						document.getElementById("oynatmayaZorlayanButon").style.display = "none";
-					}
+                    function unmute() {
+                        var lol = document.getElementById("halaytime");
+                        lol.muted = false;
+                        if (!document.videoStarted) {
+                            vid.play();
+                            document.videoStarted = true;
+                            document.videoStartedAsMuted = vid.muted;
+                        }
+                        document.videoGotUnmuted = !vid.muted;
+                        document.getElementById("oynatmayaZorlayanButon").style.display = "none";
+                    }
 
-					window.onmousedown = unmute;
-					window.ontouchstart = unmute;
+                    window.onmousedown = unmute;
+                    window.onkeydown = unmute;
+                    window.ontouchstart = unmute;
 
                     var promise = vid.play();
                     if (promise !== undefined) {
@@ -42,19 +43,19 @@
                         promise.then(_ => {
                             console.log("AutoPlay started!");
 
-							document.videoStarted = true;
-							document.videoStartedAsMuted = vid.muted;
-							document.videoGotUnmuted = !vid.muted;
+                            document.videoStarted = true;
+                            document.videoStartedAsMuted = vid.muted;
+                            document.videoGotUnmuted = !vid.muted;
 
-							if (document.videoStartedAsMuted) document.getElementById("oynatmayaZorlayanButon").style.display = "";
+                            if (document.videoStartedAsMuted) document.getElementById("oynatmayaZorlayanButon").style.display = "";
                         }).catch(error => {
                             if (!vid.paused) {
-								document.videoStarted = true;
-								document.videoStartedAsMuted = vid.muted;
-								document.videoGotUnmuted = !vid.muted;
+                                document.videoStarted = true;
+                                document.videoStartedAsMuted = vid.muted;
+                                document.videoGotUnmuted = !vid.muted;
 
-								return console.log("AutoPlay is prevented but something triggered the video to play. /shrug");
-							}
+                                return console.log("AutoPlay is prevented but something triggered the video to play. /shrug");
+                            }
                             console.log("AutoPlay is prevented, showing the goddamn button.");
                             document.getElementById("oynatmayaZorlayanButon").style.display = "";
                         });
@@ -62,16 +63,16 @@
                 };
 
                 function oynatUlan() {
-					var vid = document.getElementById("halaytime");
+                    var vid = document.getElementById("halaytime");
                     vid.volume = 0.50;
                     vid.loop = true;
-					vid.muted = false;
+                    vid.muted = false;
                     if (!document.videoStarted) {
-						vid.play();
-						document.videoStarted = true;
-						document.videoStartedAsMuted = vid.muted;
-					}
-					document.videoGotUnmuted = !vid.muted;
+                        vid.play();
+                        document.videoStarted = true;
+                        document.videoStartedAsMuted = vid.muted;
+                    }
+                    document.videoGotUnmuted = !vid.muted;
                     document.getElementById("oynatmayaZorlayanButon").style.display = "none";
                 }
             </script>
